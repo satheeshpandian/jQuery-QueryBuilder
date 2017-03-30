@@ -104,6 +104,7 @@
       <button class="btn btn-primary parse-sql" data-stmt="false">SQL</button>
       <button class="btn btn-primary parse-sql" data-stmt="question_mark">SQL statement</button>
       <button class="btn btn-primary parse-mongo">MongoDB</button>
+      <button class="btn btn-primary parse-jsonlogic">JsonLogic</button>
     </div>
 
     <div id="result" class="hide">
@@ -616,6 +617,14 @@
     $('#result').removeClass('hide')
       .find('pre').html(JSON.stringify(
       $('#builder').queryBuilder('getMongo'),
+      undefined, 2
+    ));
+  });
+
+  $('.parse-jsonlogic').on('click', function() {
+    $('#result').removeClass('hide')
+      .find('pre').html(JSON.stringify(
+      $('#builder').queryBuilder('getJsonLogic'),
       undefined, 2
     ));
   });
