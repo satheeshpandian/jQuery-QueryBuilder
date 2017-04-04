@@ -30,6 +30,10 @@ QueryBuilder.defaults({
     },
 
     jsonLogicRuleOperators: {
+        '==': function(v, f) {
+            console.log(v);
+            console.log(f);
+        },
         $ne: function(v) {
             v = v.$ne;
             return {
@@ -227,7 +231,7 @@ QueryBuilder.extend({
             };
         }
 
-        var key = andOr(query);
+        var key = jsonLogicAndOr(query);
         if (!key) {
             Utils.error('JsonLogicParse', 'Invalid JsonLogic query format');
         }
@@ -252,7 +256,7 @@ QueryBuilder.extend({
                     return;
                 }
 
-                var key = andOr(data);
+                var key = jsonLogicAndOr(data);
                 if (key) {
                     parts.push(parse(data, key));
                 }
@@ -370,7 +374,7 @@ function determineJsonLogicOperator(value) {
  * @returns {string}
  * @private
  */
-function andOr(data) {
+function jsonLogicAndOr(data) {
     var keys = Object.keys(data);
 
     for (var i = 0, l = keys.length; i < l; i++) {
