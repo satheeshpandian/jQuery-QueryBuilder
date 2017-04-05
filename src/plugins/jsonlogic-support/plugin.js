@@ -31,8 +31,6 @@ QueryBuilder.defaults({
 
     jsonLogicRuleOperators: {
         '==': function(v, f) {
-            console.log(v);
-            console.log(f);
         },
         $ne: function(v) {
             v = v.$ne;
@@ -157,7 +155,6 @@ QueryBuilder.extend({
                      * @returns {string}
                      */
                     var field = self.change('getJsonLogicField', rule.field, rule);
-                    console.log('field is [' + field + ']');
 
                     var ruleExpression = {};
                     ruleExpression[mdb.symbol] = mdb.func.call(self, field, values);
@@ -262,9 +259,7 @@ QueryBuilder.extend({
                 }
                 else {
                     var field = Object.keys(data)[0];
-                    console.log('field is [' + field + ']');
                     var value = data[field];
-                    console.log('value is [' + value + ']');
 
                     var operator = determineJsonLogicOperator(value, field);
                     if (operator === undefined) {
@@ -287,7 +282,6 @@ QueryBuilder.extend({
                      * @returns {string}
                      */
                     var id = self.change('getJsonLogicFieldID', field, value);
-                    console.log('id is [' + id + ']');
 
                     /**
                      * Modifies the rule generated from the JsonLogic expression
